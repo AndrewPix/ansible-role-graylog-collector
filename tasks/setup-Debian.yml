@@ -18,31 +18,6 @@
       - facter
   when: dependencies_installed
 
-- name: install NXLog {{ sidecar_nxlog_version }} from official repo
-  apt:
-    deb: "{{ sidecar_nxlog_package_url }}"
-    state: present
-  register: nxlog_installed
-  until: nxlog_installed is success
-  retries: 10
-  delay: 2
-  become: true
-  when: sidecar_install_nxlog and sidecar_nxlog_version is defined
-
-- name: deactivate NXLog service because of Sidecar-managed
-  service:
-    name: nxlog
-    enabled: false
-    state: stopped
-  when: sidecar_install_nxlog
-
-- name: add nxlog user to adm group
-  user:
-    name: nxlog
-    groups: adm
-    append: true
-  when: sidecar_install_nxlog
-
 - name: get latest sidecar package url
   shell: curl --silent {{ sidecar_github_repo }}/releases/latest|/usr/bin/awk '/browser_download_url/ { print $2 }' | /bin/sed 's/"//g'| grep {{ sidecar_architecture }} |grep deb
   register: install_latest_version
