@@ -1,0 +1,4 @@
+---
+server_url: {{ sidecar_server_url }}
+server_api_token: {{ sidecar_server_api_token }}
+list_log_files: {{ sidecar_list_log_files }}
