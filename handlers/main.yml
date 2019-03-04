@@ -5,3 +5,8 @@
     state: restarted
     enabled: true
   become: true
+
+- name: activate graylog-sidecar service
+  command: graylog-sidecar -service install
+  become: true
+  ignore_errors: true
