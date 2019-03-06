@@ -1,12 +1,13 @@
 ---
+- name: activate graylog-sidecar service
+  command: graylog-sidecar -service install
+  become: true
+  ignore_errors: true
+
+
 - name: restart graylog sidecar
   service:
     name: "{{ sidecar_service }}"
     state: restarted
     enabled: true
   become: true
-
-- name: activate graylog-sidecar service
-  command: graylog-sidecar -service install
-  become: true
-  ignore_errors: true
