@@ -56,7 +56,7 @@
   retries: 10
   delay: 2
   notify:
-    - activate collector_service
+    - activate graylog-sidecar service
   when: sidecar_version is defined and sidecar_local_package is undefined
 
 # - name: debug
@@ -73,7 +73,7 @@
   retries: 10
   delay: 2
   notify:
-    - activate collector_service
+    - activate graylog-sidecar service
   when: sidecar_version is undefined and sidecar_local_package is undefined
 
 - name: install local sidecar deb
@@ -81,7 +81,7 @@
     deb: /tmp/{{ sidecar_local_package }}
     state: present
   notify:
-    - activate collector_service
+    - activate graylog-sidecar service
   register: local_installed
   until: local_installed is success
   retries: 10
