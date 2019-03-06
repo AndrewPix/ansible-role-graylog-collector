@@ -19,7 +19,5 @@
     owner: root
     group: root
     mode: 0644
-  notify:
-    - activate graylog-sidecar service
-    - restart graylog sidecar
+  notify: restart graylog sidecar
   become: true
