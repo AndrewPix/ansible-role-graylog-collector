@@ -20,6 +20,6 @@
     group: root
     mode: 0644
   notify:
-    - restart graylog sidecar
     - activate graylog-sidecar service
+    - restart graylog sidecar
   become: true
